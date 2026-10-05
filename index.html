@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vi Hoàng Đô | Portfolio Chuyên Viên Booking KOL/KOC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              accent: '#ff3366',
+              soft: '#fff0f3',
+            },
+            surface: {
+              base: '#faf9f8',
+              card: '#ffffff',
+              muted: '#f4f3f0'
+            }
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+            '3xl': '1.75rem',
+            '4xl': '2.25rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #faf9f8;
+      color: #1e1e24;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    
+    .badge-glow {
+      box-shadow: 0 0 25px -5px rgba(255, 51, 102, 0.35);
+    }
+    
+    .evidence-frame {
+      position: relative;
+      border: 2px dashed #fecdd3;
+      background-color: #ffffff;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .evidence-frame:hover {
+      border-color: #fb7185;
+      box-shadow: 0 12px 30px -10px rgba(244, 63, 94, 0.15);
+    }
+
+    .glass-nav {
+      background: rgba(250, 249, 248, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #18181b 0%, #e11d48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Tối ưu hóa khi xuất file PDF / In ấn */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background-color: #ffffff !important;
+      }
+      
+      /* Ẩn các thanh điều khiển website khi in */
+      header, 
+      #mobile-menu, 
+      #toast, 
+      .no-print,
+      #floating-pdf-btn,
+      label[class*="cursor-pointer"] {
+        display: none !important;
+      }
+
+      /* Không để các mục bị cắt đôi trang vô duyên */
+      section {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+        page-break-inside: auto;
+      }
+
+      .evidence-frame,
+      .rounded-3xl,
+      .rounded-2xl,
+      tr {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      /* Đảm bảo hình ảnh tải lên được in sắc nét */
+      img {
+        max-width: 100% !important;
+        page-break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-200 selection:text-brand-600 antialiased overflow-x-hidden">
+
+  <!-- Floating Quick PDF Button (Góc dưới bên trái, không bị ẩn khi lướt) -->
+  <button id="floating-pdf-btn" onclick="triggerPrintPDF()" class="no-print fixed bottom-6 left-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-display font-semibold text-xs tracking-wide shadow-2xl hover:scale-105 transition-all duration-300 border border-white/20">
+    <i data-lucide="file-down" class="w-4 h-4"></i>
+    <span>Xuất File PDF</span>
+  </button>
+
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-rose-100/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-brand-soft border border-brand-200 flex items-center justify-center font-display font-bold text-brand-600 text-lg group-hover:scale-105 group-hover:bg-brand-500 group-hover:text-white transition-all shadow-sm">
+          ĐÔ
+        </div>
+        <div>
+          <span class="block font-display font-bold text-gray-900 tracking-tight text-base leading-none">VI HOÀNG ĐÔ</span>
+          <span class="text-[11px] font-semibold tracking-wider text-brand-500 uppercase">KOL/KOC Booking Specialist</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <a href="#about" class="hover:text-brand-600 transition-colors">Hành Trình</a>
+        <a href="#process" class="hover:text-brand-600 transition-colors">Quy Trình</a>
+        <a href="#booking-negotiation" class="hover:text-brand-600 transition-colors">Tìm Kiếm & Đàm Phán</a>
+        <a href="#campaign-management" class="hover:text-brand-600 transition-colors">Quản Lý Campaign</a>
+        <a href="#content-direction" class="hover:text-brand-600 transition-colors">Định Hướng Nội Dung</a>
+        <a href="#results" class="hover:text-brand-600 transition-colors">Kết Quả</a>
+        <a href="#fit" class="hover:text-brand-600 transition-colors">Mức Độ Phù Hợp</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        
+        <!-- Nút Xuất PDF trên Header -->
+        <button onclick="triggerPrintPDF()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-soft hover:bg-brand-100 text-brand-600 border border-brand-200 text-xs font-bold tracking-wide transition-all shadow-sm">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>Xuất PDF</span>
+        </button>
+
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gray-900 hover:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-brand-300/50">
+          <span>Liên hệ ngay</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-gray-700 hover:bg-rose-100/50 transition">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-6 bg-white/95 border-b border-rose-100 flex flex-col gap-4 text-sm font-medium text-gray-700">
+      <a href="#about" class="py-2 border-b border-gray-100 mobile-nav-link">01. Tôi Là Ai?</a>
+      <a href="#process" class="py-2 border-b border-gray-100 mobile-nav-link">02. Quy Trình Booking</a>
+      <a href="#booking-negotiation" class="py-2 border-b border-gray-100 mobile-nav-link">03. Tìm Kiếm & Đàm Phán</a>
+      <a href="#campaign-management" class="py-2 border-b border-gray-100 mobile-nav-link">04. Quản Lý Tiến Độ</a>
+      <a href="#content-direction" class="py-2 border-b border-gray-100 mobile-nav-link">05. Định Hướng Nội Dung</a>
+      <a href="#results" class="py-2 border-b border-gray-100 mobile-nav-link">06. Bằng Chứng & Kết Quả</a>
+      <a href="#fit" class="py-2 border-b border-gray-100 mobile-nav-link">07. Mức Độ Phù Hợp</a>
+      <button onclick="triggerPrintPDF()" class="py-2 text-left font-bold text-brand-600 flex items-center gap-2 border-b border-gray-100">
+        <i data-lucide="file-down" class="w-4 h-4"></i>
+        <span>Lưu Portfolio Ra File PDF</span>
+      </button>
+      <a href="#contact" class="py-2 font-bold text-gray-900 mobile-nav-link">08. Kết Nối Trực Tiếp</a>
+    </div>
+  </header>
+
+  <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-soft border border-brand-200 text-brand-600 text-xs font-semibold tracking-wide shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+            1+ Năm Kinh Nghiệm Thực Chiến • Sẵn Sàng Nhận Dự Án Mới
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold text-gray-900 tracking-tight leading-[1.08]">
+            VI HOÀNG ĐÔ
+            <span class="block text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-500 mt-2">
+              Chuyên Viên Booking KOL/KOC
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
+            Từ tìm kiếm đúng KOC, đàm phán tối ưu chi phí, quản trị tiến độ đến định hướng kịch bản và đo lường chuyển đổi thực tế. Chứng minh năng lực bằng <strong class="text-gray-900 font-bold">hệ thống dữ liệu công việc</strong>, không nói lý thuyết sáo rỗng.
+          </p>
+
+          <!-- Core Value Proposition Badges -->
+          <div class="flex flex-wrap gap-2 pt-1 text-xs font-medium text-gray-700">
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> Đàm Phán Báo Giá
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> Quản Lý Timeline & Air
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> Feedback Script & Demo
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-brand-500"></i> Báo Cáo Hiệu Quả
+            </span>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="flex flex-wrap gap-4 pt-3 w-full sm:w-auto">
+            <a href="#results" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm shadow-lg shadow-brand-500/25 transition-all text-center flex items-center justify-center gap-2">
+              <i data-lucide="database" class="w-4 h-4"></i>
+              Xem Bằng Chứng & Kết Quả
+            </a>
+            <button onclick="triggerPrintPDF()" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white border border-brand-200 hover:border-brand-500 text-brand-600 font-semibold text-sm transition-all text-center flex items-center justify-center gap-2 shadow-sm">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              Tải File PDF Về Máy
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Hero: Interactive Profile Frame -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-md">
+            <div class="evidence-frame rounded-3xl p-6 bg-white shadow-xl relative overflow-hidden group">
+              <!-- Top bar indicator -->
+              <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-300"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                </div>
+                <span class="text-[11px] font-mono uppercase tracking-wider text-gray-400 font-semibold">[FRAME – ẢNH PROFILE]</span>
+              </div>
+
+              <!-- Image Holder with upload preview capability -->
+              <div class="aspect-[4/5] rounded-2xl bg-gradient-to-b from-brand-50/70 to-rose-100/40 border border-brand-100 relative overflow-hidden flex flex-col items-center justify-center p-6 text-center" id="hero-profile-container">
+                <img id="hero-profile-img" src="" alt="Vi Hoàng Đô" class="hidden absolute inset-0 w-full h-full object-cover object-center z-10 transition duration-500 group-hover:scale-105">
+                
+                <div id="hero-profile-placeholder" class="space-y-3 z-0">
+                  <div class="w-20 h-20 mx-auto rounded-3xl bg-white shadow-md flex items-center justify-center text-brand-500 border border-brand-200">
+                    <i data-lucide="user-check" class="w-10 h-10"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-display font-bold text-gray-900 text-base">Vi Hoàng Đô</h4>
+                    <p class="text-xs text-gray-500 mt-1">Ảnh chân dung profile chính thức</p>
+                  </div>
+                  <label class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-brand-200 hover:border-brand-500 text-brand-600 text-xs font-semibold cursor-pointer shadow-sm transition hover:bg-brand-50">
+                    <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                    <span>Tải ảnh chân dung vào đây</span>
+                    <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'hero-profile-img', 'hero-profile-placeholder')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Card Mini Footer Note -->
+              <div class="mt-4 pt-3 flex items-center justify-between text-[11px] text-gray-400 border-t border-gray-100">
+                <span class="flex items-center gap-1 text-gray-500 font-medium">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Profile Đã Xác Thực
+                </span>
+                <span>Chèn ảnh nền đơn giản</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        
+        <!-- KPI 01 -->
+        <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-rose-200 transition-all duration-300 group">
+          <div class="flex items-center justify-between text-gray-400 mb-2">
+            <span class="text-xs font-mono font-semibold uppercase text-brand-500 tracking-wider">KPI 01</span>
+            <i data-lucide="users" class="w-5 h-5 text-gray-400 group-hover:text-brand-500 transition-colors"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 tracking-tight">1.000+</div>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600 mt-2">KOC Tìm Kiếm & Tiếp Cận</p>
+          <span class="text-[11px] text-gray-400 block mt-1">Nguồn data đa ngành hàng</span>
+        </div>
+
+        <!-- KPI 02 -->
+        <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-rose-200 transition-all duration-300 group">
+          <div class="flex items-center justify-between text-gray-400 mb-2">
+            <span class="text-xs font-mono font-semibold uppercase text-brand-500 tracking-wider">KPI 02</span>
+            <i data-lucide="handshake" class="w-5 h-5 text-gray-400 group-hover:text-brand-500 transition-colors"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-500 tracking-tight">100+</div>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600 mt-2">KOC Đã Chốt Hợp Tác</p>
+          <span class="text-[11px] text-gray-400 block mt-1">Đàm phán giá & brief chuẩn</span>
+        </div>
+
+        <!-- KPI 03 -->
+        <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-rose-200 transition-all duration-300 group">
+          <div class="flex items-center justify-between text-gray-400 mb-2">
+            <span class="text-xs font-mono font-semibold uppercase text-brand-500 tracking-wider">KPI 03</span>
+            <i data-lucide="play-circle" class="w-5 h-5 text-gray-400 group-hover:text-brand-500 transition-colors"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 tracking-tight">100+</div>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600 mt-2">Video Đạt &gt;100K Views</p>
+          <span class="text-[11px] text-gray-400 block mt-1">Tối ưu kịch bản & tương tác</span>
+        </div>
+
+        <!-- KPI 04 -->
+        <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-rose-200 transition-all duration-300 group">
+          <div class="flex items-center justify-between text-gray-400 mb-2">
+            <span class="text-xs font-mono font-semibold uppercase text-brand-500 tracking-wider">KPI 04</span>
+            <i data-lucide="flame" class="w-5 h-5 text-gray-400 group-hover:text-brand-500 transition-colors"></i>
+          </div>
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-500 tracking-tight">50+</div>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600 mt-2">Video Triệu Views</p>
+          <span class="text-[11px] text-gray-400 block mt-1">Organic reach & viral content</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 bg-white border-y border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">02. Giới Thiệu Bản Thân</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">TÔI LÀ AI?</h2>
+        </div>
+        <p class="text-sm text-gray-500 max-w-md">
+          Hành trình phát triển thực tế trong Influencer Marketing: chú trọng kỷ luật triển khai, quản lý dữ liệu và cam kết đầu ra.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left: Persona Story -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="p-8 rounded-3xl bg-surface-base border border-gray-200 space-y-4">
+            <h3 class="text-xl font-display font-bold text-gray-900">
+              Không chỉ là "Tìm KOC" — Tôi là cầu nối gắn kết thương hiệu và nhà sáng tạo nội dung
+            </h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Tôi là một chuyên viên Booking KOL/KOC định hướng bằng số liệu và quy trình chặt chẽ. Thay vì chỉ liên hệ danh sách có sẵn, tôi trực tiếp đánh giá năng lực sáng tạo của KOC, đối soát ngân sách, quản lý deadline gắt gao và đồng hành feedback từng khung hình kịch bản để đảm bảo chiến dịch mang lại chuyển đổi thực tế.
+            </p>
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200 text-xs">
+              <div>
+                <span class="text-gray-400 block">Thế mạnh chính:</span>
+                <span class="font-bold text-gray-800">Booking thực chiến & Đàm phán</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block">Tư duy làm việc:</span>
+                <span class="font-bold text-gray-800">Data-driven, Bám sát Timeline</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Work Experience Timeline -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold px-1">LỊCH TRÌNH KINH NGHIỆM THỰC TẾ (CV)</h4>
+            
+            <!-- Timeline Item 1 -->
+            <div class="p-6 rounded-2xl bg-white border border-gray-200 hover:border-brand-300 transition-all shadow-sm">
+              <div class="flex items-center justify-between text-xs text-brand-600 font-mono font-bold mb-1">
+                <span>06/2026 – NAY</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200">Freelance</span>
+              </div>
+              <h5 class="text-base font-bold text-gray-900">KOC Booking Freelancer</h5>
+              <p class="text-xs font-medium text-gray-500 mb-3">Công ty Cổ phần Tinh chất Quê Việt</p>
+              <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                <li>Tìm kiếm, liên hệ và đàm phán KOC theo từng campaign chuyên biệt.</li>
+                <li>Trao đổi brief, báo giá, deadline và quản lý tiến độ sản xuất nội dung.</li>
+                <li>Hỗ trợ lên idea, định hướng góc quay và feedback demo video bám sát brief.</li>
+                <li>Theo dõi hiệu quả và phối hợp xử lý linh hoạt mọi phát sinh trong lúc chạy.</li>
+              </ul>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="p-6 rounded-2xl bg-white border border-gray-200 hover:border-brand-300 transition-all shadow-sm">
+              <div class="flex items-center justify-between text-xs text-gray-500 font-mono font-bold mb-1">
+                <span>09/2025 – 09/2026</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200">Full-time</span>
+              </div>
+              <h5 class="text-base font-bold text-gray-900">Nhân viên Booking</h5>
+              <p class="text-xs font-medium text-gray-500 mb-3">Công ty TNHH Steve Mille</p>
+              <ul class="text-xs text-gray-600 space-y-1.5 list-disc list-inside">
+                <li>Tiếp cận <strong class="text-gray-900">1.000+ KOC</strong>, đàm phán và chốt <strong class="text-gray-900">100+ hợp đồng</strong> hợp tác.</li>
+                <li>Kiểm soát chất lượng, đóng góp vào <strong class="text-gray-900">100+ video &gt;100K views</strong> và <strong class="text-gray-900">50+ video triệu views</strong>.</li>
+                <li>Chủ động quản lý seeding, giải quyết tương tác tiêu cực và tổng hợp báo cáo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Evidence Frame for Overview Data -->
+        <div class="lg:col-span-6">
+          <div class="evidence-frame rounded-3xl p-6 bg-white shadow-sm">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+              <div class="flex items-center gap-2">
+                <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-600"></i>
+                <span class="text-xs font-mono font-bold text-gray-700 uppercase">[FRAME – SCREENSHOT TỔNG QUAN QUY MÔ]</span>
+              </div>
+              <span class="text-[10px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Excel / Google Sheets</span>
+            </div>
+
+            <!-- Container for Screenshot -->
+            <div class="aspect-[16/10] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-4 text-center group" id="overview-frame-box">
+              <img id="overview-frame-img" src="" alt="Screenshot tổng quan quy mô" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+              
+              <div id="overview-frame-placeholder" class="space-y-3 z-0">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-white shadow-sm flex items-center justify-center text-gray-400 border border-gray-200">
+                  <i data-lucide="table-2" class="w-7 h-7 text-emerald-500"></i>
+                </div>
+                <div class="max-w-xs mx-auto">
+                  <p class="text-xs font-bold text-gray-800">Screenshot Bảng Tổng Hợp Chiến Dịch</p>
+                  <p class="text-[11px] text-gray-500 mt-0.5 leading-snug">
+                    Hiển thị quy mô danh sách KOC, số lượng contact và tiến trình (Đã che thông tin nhạy cảm).
+                  </p>
+                </div>
+                <label class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white border border-gray-300 hover:border-brand-500 text-gray-700 text-xs font-semibold cursor-pointer shadow-sm transition">
+                  <i data-lucide="image-plus" class="w-3.5 h-3.5 text-brand-500"></i>
+                  <span>Tải ảnh minh chứng vào đây</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'overview-frame-img', 'overview-frame-placeholder')">
+                </label>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 bg-amber-50/60 rounded-xl border border-amber-200/50 flex items-start gap-2 text-[11px] text-amber-800">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+              <span><strong>NOTE NGUYÊN TẮC:</strong> Mọi hình ảnh đính kèm từ file Excel/Doc đều được crop chuẩn, che số điện thoại, email cá nhân và ngân sách nội bộ để đảm bảo tính bảo mật.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="py-20 bg-surface-base">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">03. Năng Lực Vận Hành</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">QUY TRÌNH BOOKING KOC 10 BƯỚC</h2>
+        <p class="text-sm text-gray-500 mt-3 leading-relaxed">
+          Không chỉ dừng ở việc tìm kiếm thông thường, tôi trực tiếp quản trị khép kín từ đánh giá ban đầu, thương lượng ngân sách, kiểm duyệt chất lượng nội dung đến đo lường ROI sau khi air.
+        </p>
+      </div>
+
+      <!-- Process Interactive Stepper -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-10">
+        
+        <!-- Step 1 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 01</span>
+            <i data-lucide="search" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Tìm Kiếm KOC</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Quét data đa nền tảng theo định hướng nhãn hàng.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 02</span>
+            <i data-lucide="filter" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Đánh Giá & Chọn Lọc</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Soi tệp follower, phong cách nói và độ tin cậy.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 03</span>
+            <i data-lucide="send" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Liên Hệ & Gửi Brief</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Gửi thư ngỏ, brief mục tiêu và các key message.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 04</span>
+            <i data-lucide="receipt" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Nhận Báo Giá</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Đối chiếu chi phí theo gói video hoặc combo post.</p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group border-rose-200 bg-rose-50/20">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-600 font-bold mb-2">
+            <span>BƯỚC 05</span>
+            <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-brand-600"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-brand-700">Đàm Phán & Chốt</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Thương lượng quyền lợi, cam kết view và giá tốt.</p>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 06</span>
+            <i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Lên Timeline</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Ấn định mốc gửi kịch bản, quay demo và ngày air.</p>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 07</span>
+            <i data-lucide="clock" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Theo Dõi Sản Xuất</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Chủ động nhắc lịch và hỗ trợ đạo cụ/mẫu thử.</p>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group border-rose-200 bg-rose-50/20">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-600 font-bold mb-2">
+            <span>BƯỚC 08</span>
+            <i data-lucide="message-square" class="w-4 h-4 text-brand-600"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-brand-700">Feedback Script/Demo</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Chỉnh sửa góc quay, âm thanh và lời thoại chuẩn.</p>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 09</span>
+            <i data-lucide="radio" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Air Video & Seeding</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Kiểm tra khung giờ vàng, điều hướng bình luận.</p>
+        </div>
+
+        <!-- Step 10 -->
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm hover:border-brand-400 hover:shadow-md transition-all group">
+          <div class="flex items-center justify-between text-xs font-mono text-gray-400 font-bold mb-2">
+            <span>BƯỚC 10</span>
+            <i data-lucide="check-check" class="w-4 h-4 text-brand-500"></i>
+          </div>
+          <h4 class="text-xs sm:text-sm font-bold text-gray-900">Báo Cáo & Thanh Toán</h4>
+          <p class="text-[11px] text-gray-500 mt-1 leading-snug">Nghiệm thu view, hoàn tất thủ tục và chứng từ.</p>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Proof Frame 1 -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME SCREENSHOT 1]</span>
+            <span class="text-gray-400">Danh Sách Booking</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-process-1">
+            <img id="img-process-1" src="" alt="Screenshot Danh Sách Booking" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-process-1" class="space-y-2 z-0">
+              <i data-lucide="list-checks" class="w-8 h-8 mx-auto text-brand-400"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Screenshot Danh Sách Booking KOC</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn file ảnh</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-process-1', 'ph-process-1')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 italic text-center">Bằng chứng phân loại KOC theo ngành hàng</p>
+        </div>
+
+        <!-- Proof Frame 2 -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME SCREENSHOT 2]</span>
+            <span class="text-gray-400">Theo Dõi Status</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-process-2">
+            <img id="img-process-2" src="" alt="Screenshot Theo Dõi Status" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-process-2" class="space-y-2 z-0">
+              <i data-lucide="loader" class="w-8 h-8 mx-auto text-brand-400"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Screenshot Phần Theo Dõi Status</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn file ảnh</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-process-2', 'ph-process-2')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 italic text-center">Bằng chứng quản trị trạng thái liên tục</p>
+        </div>
+
+        <!-- Proof Frame 3 -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME SCREENSHOT 3]</span>
+            <span class="text-gray-400">Lịch Air & Timeline</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-process-3">
+            <img id="img-process-3" src="" alt="Screenshot Lịch Air hoặc Timeline" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-process-3" class="space-y-2 z-0">
+              <i data-lucide="calendar-range" class="w-8 h-8 mx-auto text-brand-400"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Screenshot Lịch Air Hoặc Timeline</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn file ảnh</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-process-3', 'ph-process-3')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 italic text-center">Bằng chứng kiểm soát tiến độ không trễ hạn</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="booking-negotiation" class="py-20 bg-white border-b border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">04. Thực Thi Cốt Lõi</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">TÌM KIẾM & ĐÀM PHÁN KOC</h2>
+        </div>
+        <div class="flex gap-4">
+          <div class="px-4 py-2 rounded-2xl bg-rose-50 border border-rose-200 text-center">
+            <span class="text-xl font-display font-bold text-brand-600">1.000+</span>
+            <span class="text-[11px] block text-gray-600 font-medium">KOC Tiếp Cận</span>
+          </div>
+          <div class="px-4 py-2 rounded-2xl bg-rose-50 border border-rose-200 text-center">
+            <span class="text-xl font-display font-bold text-brand-600">100+</span>
+            <span class="text-[11px] block text-gray-600 font-medium">KOC Chốt Hợp Tác</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Pillars: Sourcing vs Negotiation -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        
+        <!-- Pillar 1: Sourcing & Filtering -->
+        <div class="p-8 rounded-3xl bg-surface-base border border-gray-200 relative overflow-hidden">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-brand-500 shadow-sm">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900">Tìm Kiếm & Chọn Lọc KOC</h3>
+              <p class="text-xs text-gray-500">Đảm bảo đúng kênh, đúng tệp, đúng ngân sách</p>
+            </div>
+          </div>
+
+          <ul class="space-y-3.5 text-xs text-gray-700">
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Tìm kiếm KOC theo campaign & chủ đề:</strong> Khảo sát KOC theo ngách F&B, Skincare, Gia dụng, Thời trang tùy theo mục tiêu của thương hiệu.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Phân loại và quản lý danh sách:</strong> Xây dựng bảng theo dõi phân cấp Nano, Micro và Mid-tier KOC kèm liên kết kênh chính thức.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Đánh giá mức độ phù hợp với brief:</strong> Phân tích văn phong, khả năng diễn đạt trước ống kính và tỷ lệ tương tác thực (comment organic).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Theo dõi trạng thái liên hệ:</strong> Ghi chép chi tiết mốc đã gửi tin, đang thảo luận, chờ báo giá hoặc từ chối để backup kịp thời.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Negotiation & Closing -->
+        <div class="p-8 rounded-3xl bg-surface-base border border-gray-200 relative overflow-hidden">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-brand-500 shadow-sm">
+              <i data-lucide="badge-percent" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900">Đàm Phán & Chốt Hợp Tác</h3>
+              <p class="text-xs text-gray-500">Tối ưu chi phí và bảo toàn quyền lợi thương hiệu</p>
+            </div>
+          </div>
+
+          <ul class="space-y-3.5 text-xs text-gray-700">
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Gửi lời mời & brief chuẩn hóa:</strong> Truyền tải rõ ràng thông điệp nhãn hàng, quy cách sản phẩm và yêu cầu bắt buộc của video.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Tiếp nhận & đối soát báo giá:</strong> So sánh mức giá đề xuất so với lượt view trung bình 10 video gần nhất để đánh giá CPV hợp lý.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Đàm phán theo ngân sách chiến dịch:</strong> Thuyết phục chốt mức chi phí tối ưu kèm điều kiện bổ sung (ví dụ: ghim comment, đăng story kèm link).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Chốt cam kết triển khai:</strong> Ràng buộc điều khoản duyệt kịch bản, chỉnh sửa tối đa 2 lần và mốc thời gian air video chính xác.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Frame 1: Booking List Sheet -->
+        <div class="evidence-frame rounded-3xl p-6 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+            <span class="text-xs font-mono font-bold text-gray-700 uppercase">[FRAME SCREENSHOT – DANH SÁCH KOC]</span>
+            <span class="text-[10px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Booking List</span>
+          </div>
+          <div class="aspect-[16/9] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-4 text-center" id="frame-neg-1">
+            <img id="img-neg-1" src="" alt="Screenshot Bảng Booking List" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-neg-1" class="space-y-2 z-0">
+              <i data-lucide="sheet" class="w-8 h-8 mx-auto text-emerald-500"></i>
+              <p class="text-xs font-bold text-gray-800">Screenshot Bảng Booking List Thực Tế</p>
+              <p class="text-[11px] text-gray-500">Thể hiện các cột: Tên KOC, Lĩnh vực, Báo giá, Trạng thái đàm phán, Người phụ trách...</p>
+              <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-300 hover:border-brand-500 text-xs font-semibold cursor-pointer">
+                <span>Tải ảnh từ file Excel</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-neg-1', 'ph-neg-1')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">NOTE: Che thông tin cá nhân (SĐT, Email riêng tư) trước khi đưa vào.</p>
+        </div>
+
+        <!-- Frame 2: Booking Exchange / Negotiation -->
+        <div class="evidence-frame rounded-3xl p-6 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+            <span class="text-xs font-mono font-bold text-gray-700 uppercase">[FRAME SCREENSHOT – BOOKING/TRAO ĐỔI]</span>
+            <span class="text-[10px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Negotiation Flow</span>
+          </div>
+          <div class="aspect-[16/9] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-4 text-center" id="frame-neg-2">
+            <img id="img-neg-2" src="" alt="Screenshot Trao Đổi Đàm Phán" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-neg-2" class="space-y-2 z-0">
+              <i data-lucide="messages-square" class="w-8 h-8 mx-auto text-brand-500"></i>
+              <p class="text-xs font-bold text-gray-800">Screenshot Quy Trình Đàm Phán & Chốt Deal</p>
+              <p class="text-[11px] text-gray-500">Minh chứng tin nhắn trao đổi brief, thương thảo mức giá và thống nhất ngày air.</p>
+              <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-300 hover:border-brand-500 text-xs font-semibold cursor-pointer">
+                <span>Tải ảnh trao đổi thực tế</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-neg-2', 'ph-neg-2')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">NOTE: Che tên riêng nhạy cảm hoặc mức ngân sách thỏa thuận riêng tư.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="campaign-management" class="py-20 bg-surface-base">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">05. Quản Trị Tiến Độ</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">QUẢN LÝ CAMPAIGN & TIẾN ĐỘ</h2>
+        <p class="text-sm text-gray-500 mt-3">
+          Tổ chức campaign theo 3 giai đoạn chặt chẽ, kiểm soát rủi ro trễ hạn và bảo đảm tiến độ sản xuất đồng loạt cho nhiều KOC cùng lúc.
+        </p>
+      </div>
+
+      <!-- 3 Phases Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        
+        <!-- Phase 1 -->
+        <div class="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm relative">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-soft text-brand-600 font-mono text-xs font-bold mb-4">
+            GIAI ĐOẠN 1
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-2">Trước Triển Khai</h4>
+          <p class="text-xs text-gray-500 mb-4">Chuẩn bị kỹ lưỡng là tiền đề cho một chiến dịch mượt mà.</p>
+          <ul class="space-y-2 text-xs text-gray-600 list-disc list-inside">
+            <li>Chốt danh sách KOC phù hợp ngân sách.</li>
+            <li>Gửi trọn bộ brief thông điệp và guideline quay.</li>
+            <li>Thống nhất kịch bản khung và mốc bàn giao demo.</li>
+            <li>Thiết lập bảng theo dõi tiến độ tổng thể (Master Tracker).</li>
+          </ul>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="p-6 rounded-3xl bg-white border border-rose-200 shadow-sm relative bg-rose-50/10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500 text-white font-mono text-xs font-bold mb-4">
+            GIAI ĐOẠN 2
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-2">Trong Triển Khai</h4>
+          <p class="text-xs text-gray-500 mb-4">Theo dõi sát sao từng giờ, phát hiện sớm nguy cơ lệch tiến độ.</p>
+          <ul class="space-y-2 text-xs text-gray-600 list-disc list-inside">
+            <li>Theo dõi deadline và nhắc nhở lịch quay KOC.</li>
+            <li>Nhận và kiểm tra chi tiết bản demo video đầu tiên.</li>
+            <li>Đưa feedback cụ thể (cắt ghép, chữ hiển thị, âm thanh).</li>
+            <li>Ấn định và bảo đảm video lên sóng đúng khung giờ vàng.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm relative">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-700 font-mono text-xs font-bold mb-4">
+            GIAI ĐOẠN 3
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-2">Sau Triển Khai</h4>
+          <p class="text-xs text-gray-500 mb-4">Tổng hợp dữ liệu minh bạch, hoàn tất thủ tục hành chính.</p>
+          <ul class="space-y-2 text-xs text-gray-600 list-disc list-inside">
+            <li>Kiểm tra link video đã air và các comment tương tác.</li>
+            <li>Thu thập chỉ số lượt xem (views), share, comment organic.</li>
+            <li>Lập báo cáo tổng kết hiệu quả chiến dịch gửi team lead.</li>
+            <li>Hỗ trợ kế toán đối soát hợp đồng và thủ tục thanh toán.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Frame 1: Timeline / Calendar -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – TIMELINE/CALENDAR]</span>
+            <span class="text-gray-400">Lịch Air</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-camp-1">
+            <img id="img-camp-1" src="" alt="Screenshot Lịch Air Thực Tế" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-camp-1" class="space-y-2 z-0">
+              <i data-lucide="calendar-days" class="w-8 h-8 mx-auto text-brand-400"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Screenshot Lịch Air Thực Tế</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn ảnh lịch</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-camp-1', 'ph-camp-1')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Bằng chứng phân bổ ngày đăng không bị dồn cục</p>
+        </div>
+
+        <!-- Frame 2: Status KOC Tracker -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – STATUS KOC]</span>
+            <span class="text-gray-400">Trạng Thái</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-camp-2">
+            <img id="img-camp-2" src="" alt="Screenshot Bảng Status KOC" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-camp-2" class="space-y-2 z-0">
+              <i data-lucide="kanban" class="w-8 h-8 mx-auto text-brand-400"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Screenshot Bảng Status KOC</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn ảnh status</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-camp-2', 'ph-camp-2')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Gồm các status: Đang dựng / Đã gửi video / Fix / Đã air</p>
+        </div>
+
+        <!-- Frame 3: Contract & Payment -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – HỢP ĐỒNG/THANH TOÁN]</span>
+            <span class="text-gray-400">Chứng Từ</span>
+          </div>
+          <div class="aspect-[4/3] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-camp-3">
+            <img id="img-camp-3" src="" alt="Screenshot Thủ Tục Thanh Toán" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-camp-3" class="space-y-2 z-0">
+              <i data-lucide="file-check" class="w-8 h-8 mx-auto text-emerald-500"></i>
+              <p class="text-xs font-semibold text-gray-700">Chèn Minh Họa Quy Trình Thanh Toán</p>
+              <label class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[11px] font-semibold cursor-pointer">
+                <span>Chọn ảnh chứng từ</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-camp-3', 'ph-camp-3')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Bằng chứng phối hợp quy trình nội bộ chuyên nghiệp</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="content-direction" class="py-20 bg-white border-b border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">06. Kiểm Soát Chất Lượng</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">ĐỊNH HƯỚNG NỘI DUNG & SCRIPT</h2>
+        </div>
+        <div class="flex gap-4">
+          <div class="px-4 py-2 rounded-2xl bg-surface-base border border-gray-200 text-center">
+            <span class="text-xl font-display font-bold text-gray-900">100+</span>
+            <span class="text-[11px] block text-gray-500 font-medium">Video &gt;100K Views</span>
+          </div>
+          <div class="px-4 py-2 rounded-2xl bg-brand-soft border border-brand-200 text-center">
+            <span class="text-xl font-display font-bold text-brand-600">50+</span>
+            <span class="text-[11px] block text-brand-700 font-medium">Video Triệu Views</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Workflow Callout -->
+      <div class="p-8 rounded-3xl bg-surface-base border border-gray-200 mb-12">
+        <div class="max-w-3xl">
+          <p class="text-xs font-mono uppercase text-brand-600 font-bold mb-2">TƯ DUY LÀM NỘI DUNG THỰC CHIẾN</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            "Booking KOC không kết thúc sau khi chốt deal — Tôi trực tiếp giữ chất lượng cho từng giây video."
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Một video booking thành công phải cân bằng giữa cá tính chân thật của KOC và thông điệp bán hàng của nhãn hàng. Tôi đồng hành cùng KOC từ khâu lên idea hook 3 giây đầu, đọc duyệt từng câu chữ trong kịch bản thoại đến soi từng khung hình demo để tránh phản cảm và tối ưu hóa chuyển đổi.
+          </p>
+        </div>
+
+        <!-- 4 Core Capabilities Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <span class="text-xs font-mono font-bold text-brand-500">01</span>
+            <h5 class="text-sm font-bold text-gray-900 mt-1">Đề Xuất Ý Tưởng</h5>
+            <p class="text-xs text-gray-500 mt-1">Gợi ý concept hợp trend và tự nhiên với phong cách riêng của từng KOC.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <span class="text-xs font-mono font-bold text-brand-500">02</span>
+            <h5 class="text-sm font-bold text-gray-900 mt-1">Định Hướng Kịch Bản</h5>
+            <p class="text-xs text-gray-500 mt-1">Hướng dẫn cách lồng ghép sản phẩm khéo léo, tránh gượng ép gây tụt view.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <span class="text-xs font-mono font-bold text-brand-500">03</span>
+            <h5 class="text-sm font-bold text-gray-900 mt-1">Feedback Script/Demo</h5>
+            <p class="text-xs text-gray-500 mt-1">Chỉ rõ mốc giây cần sửa, căn chỉnh text overlay và âm lượng nhạc nền.</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <span class="text-xs font-mono font-bold text-brand-500">04</span>
+            <h5 class="text-sm font-bold text-gray-900 mt-1">Kiểm Soát Đầu Ra</h5>
+            <p class="text-xs text-gray-500 mt-1">Rà soát lần cuối trước khi KOC bấm xuất bản để đảm bảo không lỗi kỹ thuật.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Collage Frame 1: Brief / Idea -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – BRIEF/IDEA]</span>
+          </div>
+          <div class="aspect-[3/4] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-cnt-1">
+            <img id="img-cnt-1" src="" alt="Screenshot Brief Idea" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-cnt-1" class="space-y-2 z-0">
+              <i data-lucide="lightbulb" class="w-7 h-7 mx-auto text-amber-500"></i>
+              <p class="text-xs font-semibold text-gray-700">Tài Liệu Brief / Idea</p>
+              <label class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[10px] font-semibold cursor-pointer">
+                <span>Chọn ảnh brief</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cnt-1', 'ph-cnt-1')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Tài liệu định hướng concept gửi KOC</p>
+        </div>
+
+        <!-- Collage Frame 2: Script Feedback -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – SCRIPT]</span>
+          </div>
+          <div class="aspect-[3/4] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-cnt-2">
+            <img id="img-cnt-2" src="" alt="Screenshot Script Kịch Bản" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-cnt-2" class="space-y-2 z-0">
+              <i data-lucide="file-text" class="w-7 h-7 mx-auto text-brand-500"></i>
+              <p class="text-xs font-semibold text-gray-700">Kịch Bản & Lời Thoại</p>
+              <label class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[10px] font-semibold cursor-pointer">
+                <span>Chọn ảnh script</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cnt-2', 'ph-cnt-2')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Bản duyệt câu từ và call-to-action</p>
+        </div>
+
+        <!-- Collage Frame 3: Demo Video -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – DEMO VIDEO]</span>
+          </div>
+          <div class="aspect-[3/4] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-cnt-3">
+            <img id="img-cnt-3" src="" alt="Screenshot Demo Video" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-cnt-3" class="space-y-2 z-0">
+              <i data-lucide="video" class="w-7 h-7 mx-auto text-rose-500"></i>
+              <p class="text-xs font-semibold text-gray-700">Bản Quay Demo Nháp</p>
+              <label class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[10px] font-semibold cursor-pointer">
+                <span>Chọn ảnh demo</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cnt-3', 'ph-cnt-3')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Đoạn video KOC gửi kiểm tra trước</p>
+        </div>
+
+        <!-- Collage Frame 4: Actual Aired Video -->
+        <div class="evidence-frame rounded-3xl p-5 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100 mb-3 text-xs font-mono">
+            <span class="font-bold text-gray-700 uppercase">[FRAME – VIDEO ĐÃ AIR]</span>
+          </div>
+          <div class="aspect-[3/4] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-3 text-center" id="frame-cnt-4">
+            <img id="img-cnt-4" src="" alt="Screenshot Video Đã Air" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-cnt-4" class="space-y-2 z-0">
+              <i data-lucide="play" class="w-7 h-7 mx-auto text-emerald-500"></i>
+              <p class="text-xs font-semibold text-gray-700">Video Lên Sóng Chính Thức</p>
+              <label class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-gray-300 hover:border-brand-500 text-[10px] font-semibold cursor-pointer">
+                <span>Chọn ảnh đã air</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cnt-4', 'ph-cnt-4')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Video hoàn thiện được đăng tải thành công</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="results" class="py-20 bg-surface-base">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">07. Bằng Chứng Dữ Liệu</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">KẾT QUẢ & THEO DÕI HIỆU QUẢ</h2>
+        <p class="text-sm text-gray-500 mt-3">
+          Mọi kết quả đều xuất phát từ chu trình tối ưu liên tục: Booking → Nội dung → Air → Tracking → Báo cáo → Tối ưu hóa.
+        </p>
+      </div>
+
+      <!-- Execution Loop Diagram -->
+      <div class="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm mb-12">
+        <div class="flex flex-wrap items-center justify-between gap-4 text-center">
+          <div class="flex-1 min-w-[120px] p-3 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="text-xs font-mono text-gray-400 block mb-1">01</span>
+            <span class="text-xs font-bold text-gray-900 uppercase">Booking Đúng KOC</span>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 hidden md:block"></i>
+          <div class="flex-1 min-w-[120px] p-3 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="text-xs font-mono text-gray-400 block mb-1">02</span>
+            <span class="text-xs font-bold text-gray-900 uppercase">Nội Dung Chuẩn Brief</span>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 hidden md:block"></i>
+          <div class="flex-1 min-w-[120px] p-3 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="text-xs font-mono text-gray-400 block mb-1">03</span>
+            <span class="text-xs font-bold text-gray-900 uppercase">Air Đúng Giờ Vàng</span>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 hidden md:block"></i>
+          <div class="flex-1 min-w-[120px] p-3 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="text-xs font-mono text-gray-400 block mb-1">04</span>
+            <span class="text-xs font-bold text-gray-900 uppercase">Tracking Lượt Xem</span>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 hidden md:block"></i>
+          <div class="flex-1 min-w-[120px] p-3 rounded-2xl bg-brand-soft border border-brand-200">
+            <span class="text-xs font-mono text-brand-600 block mb-1">05</span>
+            <span class="text-xs font-bold text-brand-700 uppercase">Báo Cáo & Tối Ưu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Frame 1: Tracking / Report Sheet -->
+        <div class="evidence-frame rounded-3xl p-6 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+            <span class="text-xs font-mono font-bold text-gray-700 uppercase">[FRAME – PERFORMANCE / TRACKING]</span>
+            <span class="text-[10px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Campaign Sheet</span>
+          </div>
+          <div class="aspect-[16/10] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-4 text-center" id="frame-res-1">
+            <img id="img-res-1" src="" alt="Screenshot Bảng Tracking Báo Cáo" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-res-1" class="space-y-2 z-0">
+              <i data-lucide="line-chart" class="w-8 h-8 mx-auto text-brand-500"></i>
+              <p class="text-xs font-bold text-gray-800">Screenshot Bảng Tracking / Report Hiệu Quả</p>
+              <p class="text-[11px] text-gray-500">Gồm số liệu views thực, tỷ lệ tương tác và nghiệm thu chỉ số cam kết.</p>
+              <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-300 hover:border-brand-500 text-xs font-semibold cursor-pointer">
+                <span>Chọn ảnh report</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-res-1', 'ph-res-1')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">Bằng chứng khả năng đọc và tổng hợp số liệu chiến dịch</p>
+        </div>
+
+        <!-- Frame 2: Top Highlighted Videos Views -->
+        <div class="evidence-frame rounded-3xl p-6 bg-white shadow-sm">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+            <span class="text-xs font-mono font-bold text-gray-700 uppercase">[FRAME – VIDEO PERFORMANCE]</span>
+            <span class="text-[10px] text-gray-400 bg-gray-100 px-2 py-0.5 rounded">Viral Highlights</span>
+          </div>
+          <div class="aspect-[16/10] rounded-2xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-4 text-center" id="frame-res-2">
+            <img id="img-res-2" src="" alt="Screenshot Video Views Nổi Bật" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+            <div id="ph-res-2" class="space-y-2 z-0">
+              <i data-lucide="sparkles" class="w-8 h-8 mx-auto text-amber-500"></i>
+              <p class="text-xs font-bold text-gray-800">Screenshot Các Video Triệu Views</p>
+              <p class="text-[11px] text-gray-500">Bằng chứng thực tế các video đạt từ 100K view đến triệu view trên nền tảng.</p>
+              <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-300 hover:border-brand-500 text-xs font-semibold cursor-pointer">
+                <span>Chọn ảnh video nổi bật</span>
+                <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-res-2', 'ph-res-2')">
+              </label>
+            </div>
+          </div>
+          <p class="text-[11px] text-gray-400 mt-3 text-center">Chứng minh thành tích 50+ video triệu views nêu trong CV</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="case-study" class="py-20 bg-white border-b border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">08. Điển Hình Thực Chiến</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">MỘT CAMPAIGN ĐƯỢC TRIỂN KHAI NHƯ THẾ NÀO?</h2>
+        </div>
+        <span class="text-xs text-gray-500 max-w-sm">
+          Khung case study thực tế tuân thủ nguyên tắc trung thực dữ liệu, thể hiện rõ vai trò điều phối từ A đến Z.
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Case Story Breakdown (4 steps) -->
+        <div class="lg:col-span-6 space-y-4">
+          
+          <div class="p-5 rounded-2xl bg-surface-base border border-gray-200">
+            <span class="text-[11px] font-mono font-bold text-brand-500 block mb-1">01 • MỤC TIÊU CHIẾN DỊCH</span>
+            <h4 class="text-sm font-bold text-gray-900">Gia tăng độ nhận diện & Kích thích chuyển đổi</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Phủ sóng thương hiệu qua tệp KOC uy tín, tạo tương tác tự nhiên và thúc đẩy hành vi tìm kiếm của khách hàng mục tiêu.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-surface-base border border-gray-200">
+            <span class="text-[11px] font-mono font-bold text-brand-500 block mb-1">02 • CHỌN LỌC KOC & TIẾP CẬN</span>
+            <h4 class="text-sm font-bold text-gray-900">Sàng lọc dựa trên chỉ số thực (True Engagement)</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Lập shortlist KOC có phong cách phù hợp tệp người mua, loại bỏ các kênh có dấu hiệu view ảo hoặc spam comment.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-surface-base border border-gray-200">
+            <span class="text-[11px] font-mono font-bold text-brand-500 block mb-1">03 • ĐÀM PHÁN & CAM KẾT</span>
+            <h4 class="text-sm font-bold text-gray-900">Thống nhất chi phí & Điều khoản kiểm duyệt</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Chốt mức phí tối ưu ngân sách công ty, ký cam kết gửi demo trước khi air 48 giờ và sửa chữa nếu chưa đúng thông điệp.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-surface-base border border-gray-200">
+            <span class="text-[11px] font-mono font-bold text-brand-500 block mb-1">04 • QUẢN LÝ NỘI DUNG & AIR</span>
+            <h4 class="text-sm font-bold text-gray-900">Bám sát kịch bản & Kiểm soát rủi ro</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Duyệt lời thoại, hỗ trợ KOC định hướng cách chia sẻ tự nhiên nhất; điều phối air video theo đúng timeline đã thống nhất.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Case Study Evidence Frames (Collage 2x2) -->
+        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <div class="evidence-frame rounded-2xl p-4 bg-white shadow-sm">
+            <span class="text-[10px] font-mono font-bold text-gray-700 uppercase block mb-2">[FRAME – CAMPAIGN]</span>
+            <div class="aspect-video rounded-xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-2 text-center" id="frame-cs-1">
+              <img id="img-cs-1" src="" alt="Screenshot Campaign" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+              <div id="ph-cs-1" class="space-y-1 z-0">
+                <i data-lucide="folder-kanban" class="w-5 h-5 mx-auto text-brand-400"></i>
+                <p class="text-[11px] font-bold text-gray-700">Tổng Quan Campaign</p>
+                <label class="text-[10px] font-semibold text-brand-600 underline cursor-pointer">
+                  Tải ảnh
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cs-1', 'ph-cs-1')">
+                </label>
+              </div>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-1 text-center">Bằng chứng kế hoạch tổng</p>
+          </div>
+
+          <div class="evidence-frame rounded-2xl p-4 bg-white shadow-sm">
+            <span class="text-[10px] font-mono font-bold text-gray-700 uppercase block mb-2">[FRAME – KOC/BOOKING]</span>
+            <div class="aspect-video rounded-xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-2 text-center" id="frame-cs-2">
+              <img id="img-cs-2" src="" alt="Screenshot KOC Booking" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+              <div id="ph-cs-2" class="space-y-1 z-0">
+                <i data-lucide="user-check" class="w-5 h-5 mx-auto text-brand-400"></i>
+                <p class="text-[11px] font-bold text-gray-700">Danh Sách KOC Campaign</p>
+                <label class="text-[10px] font-semibold text-brand-600 underline cursor-pointer">
+                  Tải ảnh
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cs-2', 'ph-cs-2')">
+                </label>
+              </div>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-1 text-center">Bằng chứng chốt danh sách</p>
+          </div>
+
+          <div class="evidence-frame rounded-2xl p-4 bg-white shadow-sm">
+            <span class="text-[10px] font-mono font-bold text-gray-700 uppercase block mb-2">[FRAME – CONTENT]</span>
+            <div class="aspect-video rounded-xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-2 text-center" id="frame-cs-3">
+              <img id="img-cs-3" src="" alt="Screenshot Content" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+              <div id="ph-cs-3" class="space-y-1 z-0">
+                <i data-lucide="film" class="w-5 h-5 mx-auto text-brand-400"></i>
+                <p class="text-[11px] font-bold text-gray-700">Feedback Nội Dung</p>
+                <label class="text-[10px] font-semibold text-brand-600 underline cursor-pointer">
+                  Tải ảnh
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cs-3', 'ph-cs-3')">
+                </label>
+              </div>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-1 text-center">Bằng chứng góp ý video</p>
+          </div>
+
+          <div class="evidence-frame rounded-2xl p-4 bg-white shadow-sm">
+            <span class="text-[10px] font-mono font-bold text-gray-700 uppercase block mb-2">[FRAME – RESULT]</span>
+            <div class="aspect-video rounded-xl bg-gray-50 border border-dashed border-gray-300 relative overflow-hidden flex flex-col items-center justify-center p-2 text-center" id="frame-cs-4">
+              <img id="img-cs-4" src="" alt="Screenshot Result" class="hidden absolute inset-0 w-full h-full object-cover z-10">
+              <div id="ph-cs-4" class="space-y-1 z-0">
+                <i data-lucide="trophy" class="w-5 h-5 mx-auto text-amber-500"></i>
+                <p class="text-[11px] font-bold text-gray-700">Kết Quả Đạt Được</p>
+                <label class="text-[10px] font-semibold text-brand-600 underline cursor-pointer">
+                  Tải ảnh
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'img-cs-4', 'ph-cs-4')">
+                </label>
+              </div>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-1 text-center">Bằng chứng view & tương tác</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 bg-surface-base">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">09. Hệ Thống Kỹ Năng</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">NĂNG LỰC CHUYÊN MÔN</h2>
+        <p class="text-sm text-gray-500 mt-3">
+          Tập hợp các năng lực thực chiến được tích lũy trực tiếp qua công việc thực tế, không lý thuyết suông.
+        </p>
+      </div>
+
+      <!-- Skills Matrix Grid (4 Categories) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Skill Group 1: Booking -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:border-brand-300 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-brand-soft border border-brand-200 flex items-center justify-center text-brand-600 mb-5 group-hover:bg-brand-500 group-hover:text-white transition">
+            <i data-lucide="handshake" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-3">BOOKING & ĐÀM PHÁN</h4>
+          <ul class="space-y-2.5 text-xs text-gray-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Đàm phán báo giá & điều khoản
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Tìm kiếm & phân loại tệp KOC
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Quản trị quan hệ với Influencer
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Xây dựng data KOC uy tín
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill Group 2: Campaign -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:border-brand-300 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-brand-soft border border-brand-200 flex items-center justify-center text-brand-600 mb-5 group-hover:bg-brand-500 group-hover:text-white transition">
+            <i data-lucide="calendar-check" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-3">QUẢN LÝ CAMPAIGN</h4>
+          <ul class="space-y-2.5 text-xs text-gray-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Quản lý tiến độ đa dự án
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Theo sát deadline từng KOC
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Phối hợp phòng ban (MKT, Kế toán)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Xử lý tình huống phát sinh
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill Group 3: Content -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:border-brand-300 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-brand-soft border border-brand-200 flex items-center justify-center text-brand-600 mb-5 group-hover:bg-brand-500 group-hover:text-white transition">
+            <i data-lucide="clapperboard" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-3">ĐỊNH HƯỚNG CONTENT</h4>
+          <ul class="space-y-2.5 text-xs text-gray-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Đề xuất Concept & Angles quay
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Biên tập kịch bản thoại tự nhiên
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Feedback chi tiết bản demo video
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Seeding điều hướng người xem
+            </li>
+          </ul>
+        </div>
+
+        <!-- Skill Group 4: Analytics -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:border-brand-300 transition group">
+          <div class="w-12 h-12 rounded-2xl bg-brand-soft border border-brand-200 flex items-center justify-center text-brand-600 mb-5 group-hover:bg-brand-500 group-hover:text-white transition">
+            <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+          </div>
+          <h4 class="text-base font-bold text-gray-900 mb-3">THEO DÕI & ĐO LƯỜNG</h4>
+          <ul class="space-y-2.5 text-xs text-gray-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Tracking views và tương tác
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Đánh giá tỷ lệ chuyển đổi
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Tổng hợp báo cáo chiến dịch
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+              Đề xuất giải pháp tối ưu chi phí
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="fit" class="py-20 bg-white border-b border-gray-200/70">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-brand-500 font-bold">10. Đánh Giá Sự Phù Hợp</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 mt-2">TÔI PHÙ HỢP VỚI VỊ TRÍ NÀY NHƯ THẾ NÀO?</h2>
+        <p class="text-sm text-gray-500 mt-3">
+          Đối chiếu trực tiếp giữa yêu cầu từ JD của nhà tuyển dụng và kinh nghiệm đã chứng minh trong hồ sơ công việc thực tế của tôi.
+        </p>
+      </div>
+
+      <!-- Mapping Table -->
+      <div class="overflow-hidden rounded-3xl border border-gray-200 shadow-sm bg-white">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-surface-base border-b border-gray-200 text-gray-600 font-mono uppercase text-[11px]">
+              <tr>
+                <th class="py-4 px-6 w-1/3">Yêu Cầu Vị Trí (JD)</th>
+                <th class="py-4 px-6 w-2/3 text-brand-600 font-bold">Kinh Nghiệm Thực Tế Của Vi Hoàng Đô</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 text-gray-700">
+              
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  1. Tìm kiếm & Booking KOL/KOC
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Tiếp cận hơn <strong class="text-brand-600">1.000+ KOC</strong>, trực tiếp đàm phán và chốt hợp tác thành công cho <strong class="text-brand-600">100+ KOC</strong> thuộc nhiều chiến dịch khác nhau tại Steve Mille và Quê Việt.
+                </td>
+              </tr>
+
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  2. Khả năng đàm phán & thương lượng
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Trực tiếp trao đổi brief, thỏa thuận báo giá, quyền lợi phát sinh (ghim link, seeding) và cam kết KPI view theo đúng ngân sách công ty đề ra.
+                </td>
+              </tr>
+
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  3. Quản lý tiến độ & deadline
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Theo dõi sát sao từng mốc: nhận script → nhận demo video → trả feedback → duyệt link trước khi air, cam kết không trễ lịch campaign.
+                </td>
+              </tr>
+
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  4. Định hướng nội dung & chất lượng video
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Chủ động đề xuất ý tưởng, định hướng kịch bản và feedback chi tiết demo video; đóng góp vào <strong class="text-brand-600">100+ video &gt;100K views</strong> và <strong class="text-brand-600">50+ video triệu views</strong>.
+                </td>
+              </tr>
+
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  5. Phối hợp làm việc nhóm & quy trình nội bộ
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Làm việc chặt chẽ cùng team Marketing và Kế toán để hoàn tất hợp đồng, theo dõi thủ tục thanh toán đúng hạn cho KOC.
+                </td>
+              </tr>
+
+              <tr class="hover:bg-rose-50/20 transition-colors">
+                <td class="py-4 px-6 font-bold text-gray-900 align-top">
+                  6. Theo dõi hiệu quả & tối ưu chiến dịch
+                </td>
+                <td class="py-4 px-6 align-top">
+                  Tổng hợp số liệu tương tác thực tế, điều hướng seeding bình luận tích cực và lập báo cáo đánh giá sau mỗi đợt chạy để rút kinh nghiệm cho đợt booking tiếp theo.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Professional Commitment Statement -->
+      <div class="mt-8 p-6 rounded-3xl bg-brand-soft border border-brand-200 text-center max-w-3xl mx-auto">
+        <p class="text-xs sm:text-sm text-gray-800 leading-relaxed font-medium">
+          "Tôi muốn tiếp tục gắn bó và phát triển chuyên sâu trong lĩnh vực Influencer Marketing và Booking KOL/KOC, với thế mạnh cốt lõi về khả năng triển khai thực tế, kỷ luật quản lý tiến độ và đồng hành cùng KOC từ khâu ý tưởng đến khi ra kết quả đo lường được."
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="py-24 bg-surface-base relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="bg-gray-900 text-white rounded-4xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+        <!-- Background subtle glow -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          
+          <!-- Contact Left Info -->
+          <div class="lg:col-span-7 space-y-6">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brand-300 text-xs font-mono font-semibold tracking-wider uppercase">
+              <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+              Sẵn Sàng Trao Đổi Công Việc
+            </span>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight leading-tight">
+              Cùng tạo nên những chiến dịch đáng nhớ.
+            </h2>
+
+            <p class="text-sm text-gray-400 max-w-lg leading-relaxed">
+              Nếu quý công ty đang tìm kiếm một Chuyên viên Booking KOL/KOC có trách nhiệm, am hiểu quy trình thực tế và chủ động trong công việc, hãy kết nối ngay với tôi.
+            </p>
+
+            <!-- Direct Contact Items with Copy helper -->
+            <div class="space-y-3 pt-2">
+              
+              <!-- Contact Name -->
+              <div class="flex items-center gap-3 text-sm text-gray-300">
+                <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-400">
+                  <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <span class="text-xs text-gray-400 block font-mono">Ứng viên:</span>
+                  <span class="font-bold text-white">Vi Hoàng Đô</span>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 max-w-md">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-400">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-gray-400 block font-mono">Điện thoại / Zalo:</span>
+                    <span id="phone-text" class="font-medium text-white text-xs sm:text-sm">[Số điện thoại của bạn]</span>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('phone-text', 'Số điện thoại')" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-brand-500 text-xs font-medium transition text-gray-300 hover:text-white">
+                  Sao chép
+                </button>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10 max-w-md">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-400">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-gray-400 block font-mono">Email liên hệ:</span>
+                    <span id="email-text" class="font-medium text-white text-xs sm:text-sm">[Email của bạn]</span>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('email-text', 'Email')" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-brand-500 text-xs font-medium transition text-gray-300 hover:text-white">
+                  Sao chép
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Contact Right: Mini Profile Frame -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="w-full max-w-xs">
+              <div class="evidence-frame rounded-3xl p-5 bg-gray-800/90 border-dashed border-gray-600 shadow-xl text-center">
+                <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest block mb-3">[FRAME ẢNH CHÂN DUNG NHỎ]</span>
+                
+                <div class="w-28 h-28 mx-auto rounded-full bg-gray-700 border-2 border-brand-400 relative overflow-hidden flex items-center justify-center mb-3" id="contact-avatar-box">
+                  <img id="contact-avatar-img" src="" alt="Vi Hoàng Đô" class="hidden absolute inset-0 w-full h-full object-cover">
+                  <div id="contact-avatar-ph">
+                    <i data-lucide="user" class="w-10 h-10 text-gray-400"></i>
+                  </div>
+                </div>
+
+                <h4 class="font-display font-bold text-white text-base">Vi Hoàng Đô</h4>
+                <p class="text-xs text-brand-300 mt-0.5">Booking KOL/KOC Specialist</p>
+
+                <label class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold cursor-pointer text-gray-300 transition">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Thay ảnh avatar</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="previewImage(this, 'contact-avatar-img', 'contact-avatar-ph')">
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="py-8 bg-white border-t border-gray-200 text-center text-xs text-gray-400 font-medium">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 Vi Hoàng Đô — Portfolio Chuyên Viên Booking KOL/KOC.</span>
+      <span class="flex items-center gap-1">
+        Thiết kế tối ưu hóa bằng dữ liệu thực chiến & bằng chứng công việc
+      </span>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Box for User Interactions -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-gray-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl border border-gray-700 flex items-center gap-2 pointer-events-none">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-message">Đã sao chép vào bộ nhớ tạm!</span>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Helper: Trigger Print PDF with notice
+    function triggerPrintPDF() {
+      showToast('Đang mở hộp thoại in. Hãy chọn "Lưu dưới dạng PDF" (Save as PDF)!');
+      setTimeout(() => {
+        window.print();
+      }, 500);
+    }
+
+    // Helper: Local Image Upload Preview for any frame
+    function previewImage(input, imgId, placeholderId) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgElem = document.getElementById(imgId);
+          const phElem = document.getElementById(placeholderId);
+          if (imgElem) {
+            imgElem.src = e.target.result;
+            imgElem.classList.remove('hidden');
+          }
+          if (phElem) {
+            phElem.classList.add('opacity-0');
+            phElem.style.pointerEvents = 'none';
+          }
+          showToast('Đã tải và hiển thị ảnh thành công!');
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Helper: Copy Text without using alert()
+    function copyToClipboard(elementId, label) {
+      const textElem = document.getElementById(elementId);
+      if (!textElem) return;
+      
+      const textToCopy = textElem.innerText;
+      
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = textToCopy;
+      tempTextArea.style.position = "fixed";
+      tempTextArea.style.left = "-9999px";
+      document.body.appendChild(tempTextArea);
+      tempTextArea.focus();
+      tempTextArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast('Đã sao chép ' + label + ': ' + textToCopy);
+      } catch (err) {
+        showToast('Không thể sao chép tự động.');
+      }
+      
+      document.body.removeChild(tempTextArea);
+    }
+
+    // Helper: Toast Message System
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      if (!toast || !toastMsg) return;
+      
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
